@@ -1,0 +1,82 @@
+/* ── The Human Section — Editorial Layout ── */
+
+.human {
+  width: 100%;
+  padding: var(--spacing-xl) 0;
+}
+
+/* ── Photo frame ── */
+
+.human__photo-frame {
+  width: calc(100% - 10vw);
+  height: 60vh;
+  margin: 0 auto;
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.human__photo-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.human__photo-inner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: grayscale(30%);
+}
+
+/* ── Text area ── */
+
+.human__text {
+  width: 50%;
+  margin-left: auto;
+  margin-right: 5vw;
+  padding-top: var(--spacing-lg);
+}
+
+.human__accent-line {
+  width: 60px;
+  height: 1px;
+  background: var(--color-accent);
+  margin-bottom: var(--spacing-md);
+  transform-origin: left;
+}
+
+.human__name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text);
+  opacity: 0.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.human__bio {
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  opacity: 0.85;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 768px) {
+  .human__photo-frame {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .human__text {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+}
