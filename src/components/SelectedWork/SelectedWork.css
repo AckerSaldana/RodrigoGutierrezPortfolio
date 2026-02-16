@@ -18,14 +18,16 @@
   font-size: clamp(6vw, 8vw, 10vw);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  line-height: 1;
+  line-height: 1.3;
   color: var(--color-text);
   text-align: center;
 }
 
 .sw-header__char {
-  display: inline;
+  display: inline-block;
+  vertical-align: baseline;
   will-change: opacity;
+  line-height: inherit;
 }
 
 .sw-header__char--accent {

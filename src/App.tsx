@@ -4,6 +4,7 @@ import LoadingScreen from './components/LoadingScreen';
 import HeroSection from './components/HeroSection';
 import IntroStrip from './components/IntroStrip';
 import SelectedWork from './components/SelectedWork/SelectedWork';
+import TheArchive from './components/TheArchive/TheArchive';
 import ScrollProgress from './components/ScrollProgress';
 import './App.css';
 
@@ -49,6 +50,7 @@ function App() {
             <HeroSection />
             <IntroStrip />
             <SelectedWork />
+            <TheArchive />
           </main>
         </>
       )}

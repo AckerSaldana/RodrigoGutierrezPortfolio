@@ -30,7 +30,6 @@ const VARIANT_CONFIGS: Record<VariantKey, VariantConfig> = {
     desc: { from: { opacity: 0, y: 15 }, to: { opacity: 0.85, y: 0 } },
     ghost: { from: { opacity: 0.02 }, to: { opacity: 0.05 } },
     tags: { from: { opacity: 0 }, to: { opacity: 0.6 } },
-    // No clip-path — clean cut
   },
   B: {
     bg: { from: { x: '0%' }, to: { x: '-8%' } },
@@ -38,7 +37,7 @@ const VARIANT_CONFIGS: Record<VariantKey, VariantConfig> = {
     desc: { from: { opacity: 0, x: 20 }, to: { opacity: 0.85, x: 0 } },
     ghost: { from: { opacity: 0.02 }, to: { opacity: 0.05 } },
     tags: { from: { opacity: 0, y: 10 }, to: { opacity: 0.6, y: 0 } },
-    section: { from: 'inset(100% 0 0 0)', to: 'inset(0% 0 0 0)' }, // wipe up
+    section: { from: 'inset(100% 0 0 0)', to: 'inset(0% 0 0 0)' },
   },
   C: {
     bg: { from: { scale: 1.12 }, to: { scale: 1 } },
@@ -46,7 +45,7 @@ const VARIANT_CONFIGS: Record<VariantKey, VariantConfig> = {
     desc: { from: { opacity: 0, y: 10 }, to: { opacity: 0.85, y: 0 } },
     ghost: { from: { opacity: 0.02 }, to: { opacity: 0.05 } },
     tags: { from: { opacity: 0 }, to: { opacity: 0.6 } },
-    section: { from: 'inset(0 100% 0 0)', to: 'inset(0 0% 0 0)' }, // wipe from left
+    section: { from: 'inset(0 100% 0 0)', to: 'inset(0 0% 0 0)' },
   },
   D: {
     bg: { from: { rotation: -0.8, x: '-3%' }, to: { rotation: 0.8, x: '3%' } },
@@ -54,7 +53,7 @@ const VARIANT_CONFIGS: Record<VariantKey, VariantConfig> = {
     desc: { from: { opacity: 0, x: -20 }, to: { opacity: 0.85, x: 0 } },
     ghost: { from: { opacity: 0.02 }, to: { opacity: 0.05 } },
     tags: { from: { opacity: 0 }, to: { opacity: 0.6 } },
-    section: { from: 'polygon(0 0, 0 0, 0 100%, 0% 100%)', to: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)' }, // diagonal reveal
+    section: { from: 'polygon(0 0, 0 0, 0 100%, 0% 100%)', to: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)' },
   },
 };
 
@@ -170,7 +169,6 @@ export default function ProjectSection({ project, variant, style }: Props) {
 
     // Mobile: unified simple animation
     mm.add('(max-width: 768px)', () => {
-      // Simple zoom + fade for all variants
       gsap.set(visual, { scale: 1 });
       const bgSt = ScrollTrigger.create({
         trigger: section,
@@ -181,7 +179,6 @@ export default function ProjectSection({ project, variant, style }: Props) {
       });
       triggers.push(bgSt);
 
-      // Ghost
       gsap.set(ghost, { opacity: 0.02 });
       const ghostSt = ScrollTrigger.create({
         trigger: section,
@@ -192,7 +189,6 @@ export default function ProjectSection({ project, variant, style }: Props) {
       });
       triggers.push(ghostSt);
 
-      // Title chars — simple slide up
       if (chars.length > 0) {
         gsap.set(chars, { opacity: 0, y: 20 });
         const charsSt = ScrollTrigger.create({
@@ -210,7 +206,6 @@ export default function ProjectSection({ project, variant, style }: Props) {
         triggers.push(charsSt);
       }
 
-      // Description
       gsap.set(desc, { opacity: 0, y: 10 });
       const descSt = ScrollTrigger.create({
         trigger: section,
@@ -221,7 +216,6 @@ export default function ProjectSection({ project, variant, style }: Props) {
       });
       triggers.push(descSt);
 
-      // Tags
       if (tags.length > 0) {
         gsap.set(tags, { opacity: 0 });
         const tagsSt = ScrollTrigger.create({
