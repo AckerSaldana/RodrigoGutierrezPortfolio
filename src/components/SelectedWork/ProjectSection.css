@@ -1,0 +1,327 @@
+/* =========================================
+   ProjectSection — base + 4 variant modifiers
+   ========================================= */
+
+.project-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ---------- Visual (background image) ---------- */
+
+.project-section__visual {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.project-section__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.project-section__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Ghost number ---------- */
+
+.project-section__ghost-number {
+  position: absolute;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232, 228, 223, 0.035);
+  pointer-events: none;
+  user-select: none;
+  will-change: opacity;
+  z-index: 1;
+}
+
+/* ---------- Content overlay ---------- */
+
+.project-section__content {
+  position: relative;
+  z-index: 2;
+  max-width: 60%;
+}
+
+.project-section__title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 5vw);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.project-section__char {
+  display: inline-block;
+  will-change: transform, opacity, clip-path;
+}
+
+.project-section__description {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  line-height: 1.7;
+  color: var(--color-text);
+  max-width: 500px;
+}
+
+/* ---------- Tags ---------- */
+
+.project-section__tags {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+}
+
+.project-section__tag {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+
+/* =========================================
+   VARIANT A — Bottom-left, zoom in, vertical tags right
+   ========================================= */
+
+.project-section--a {
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.project-section--a .project-section__content {
+  padding: clamp(2rem, 5vw, 4rem);
+}
+
+/* Gradient: bottom-up */
+.project-section--a .project-section__visual::after {
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.3) 40%, transparent 70%);
+}
+
+/* Ghost: center, 40vw */
+.project-section--a .project-section__ghost-number {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40vw;
+}
+
+/* Tags: vertical, right */
+.project-section--a .project-section__tags {
+  writing-mode: vertical-rl;
+  right: 2vw;
+  top: 50%;
+  transform: translateY(-50%);
+  gap: 1.5rem;
+}
+
+
+/* =========================================
+   VARIANT B — Bottom-right, pan left, horizontal tags bottom-left
+   ========================================= */
+
+.project-section--b {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.project-section--b .project-section__visual {
+  /* Oversized for pan motion — no edge exposure */
+  width: 115%;
+  left: 0;
+}
+
+.project-section--b .project-section__content {
+  padding: clamp(2rem, 5vw, 4rem);
+  text-align: right;
+}
+
+.project-section--b .project-section__description {
+  margin-left: auto;
+}
+
+/* Gradient: right-to-left */
+.project-section--b .project-section__visual::after {
+  background: linear-gradient(to left, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.3) 40%, transparent 70%);
+}
+
+/* Ghost: bottom-right, 25vw */
+.project-section--b .project-section__ghost-number {
+  bottom: 5%;
+  right: 5%;
+  font-size: 25vw;
+}
+
+/* Tags: horizontal, bottom-left */
+.project-section--b .project-section__tags {
+  bottom: clamp(2rem, 5vw, 4rem);
+  left: clamp(2rem, 5vw, 4rem);
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+
+/* =========================================
+   VARIANT C — Center-bottom, zoom out, horizontal tags centered
+   ========================================= */
+
+.project-section--c {
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.project-section--c .project-section__content {
+  padding: clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  max-width: 70%;
+}
+
+.project-section--c .project-section__description {
+  margin: 0 auto;
+}
+
+/* Gradient: radial vignette + bottom */
+.project-section--c .project-section__visual::after {
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(10, 10, 10, 0.6) 100%),
+    linear-gradient(to top, rgba(10, 10, 10, 0.85) 0%, transparent 50%);
+}
+
+/* Ghost: top-center, 35vw */
+.project-section--c .project-section__ghost-number {
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 35vw;
+}
+
+/* Tags: horizontal, centered */
+.project-section--c .project-section__tags {
+  bottom: clamp(2rem, 5vw, 4rem);
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+
+/* =========================================
+   VARIANT D — Top-left, rotate+pan, vertical tags left
+   ========================================= */
+
+.project-section--d {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.project-section--d .project-section__visual {
+  /* Oversized for rotate+pan — no edge exposure */
+  width: 115%;
+  height: 115%;
+  top: -7.5%;
+  left: -7.5%;
+}
+
+.project-section--d .project-section__content {
+  padding: clamp(2rem, 5vw, 4rem);
+  padding-top: clamp(3rem, 8vw, 6rem);
+}
+
+/* Gradient: top-left corner */
+.project-section--d .project-section__visual::after {
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.3) 40%, transparent 70%);
+}
+
+/* Ghost: bottom-left, 35vw */
+.project-section--d .project-section__ghost-number {
+  bottom: 5%;
+  left: 5%;
+  font-size: 35vw;
+}
+
+/* Tags: vertical, left */
+.project-section--d .project-section__tags {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  left: 2vw;
+  top: 50%;
+  gap: 1.5rem;
+}
+
+
+/* =========================================
+   MOBILE — all variants collapse to bottom-left
+   ========================================= */
+
+@media (max-width: 768px) {
+  .project-section {
+    flex-direction: column;
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+    /* Disable clip-path transitions on mobile */
+    clip-path: none !important;
+  }
+
+  .project-section__visual {
+    /* Reset oversized variants */
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+
+  .project-section__content {
+    max-width: 85%;
+    padding: 0 var(--spacing-sm) var(--spacing-xs) !important;
+    text-align: left !important;
+  }
+
+  .project-section__description {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .project-section__ghost-number {
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 55vw !important;
+  }
+
+  /* All tags become horizontal on mobile */
+  .project-section__tags {
+    writing-mode: horizontal-tb !important;
+    position: relative !important;
+    right: auto !important;
+    left: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    padding: 0 var(--spacing-sm) clamp(2rem, 5vw, 4rem);
+    flex-wrap: wrap;
+    flex-direction: row !important;
+    gap: 0.75rem !important;
+  }
+}

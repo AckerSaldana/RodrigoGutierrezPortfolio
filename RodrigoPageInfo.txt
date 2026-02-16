@@ -1,0 +1,112 @@
+RODRIGO GUTIÉRREZ PEÑA — Full Portfolio Brief
+Personal Info & Contact
+* Name: Rodrigo Gutiérrez Peña
+* Field: Mechatronics Engineering (undergraduate at Tecnológico de Monterrey)
+* Email: rodrigogtz04@gmail.com
+* Location: Saltillo, Coahuila, México (primarily)
+* Website: rodrigogutierrez.info (built on Wix)
+* Social Media: Facebook, Instagram, X (@peagtz), TikTok (@whytherite)
+About / Bio Summary
+Rodrigo positions himself as a mechatronics engineering student with work spanning engineering design, robotics, drones, automation, and international experiences. He highlights his multilingual abilities (German and French), leadership as a peer mentor, and an automotive engineering course completed in Germany. His portfolio emphasizes problem-solving, innovation, and commitment to impactful engineering.
+SECTION 1: EXTRACURRICULAR ENGINEERING & LEADERSHIP (3 projects)
+1. Peer Mentoring Program – Student Support & Guidance
+* Date: August 2023 | Location: Saltillo, Coahuila
+* Certified peer mentor at Tecnológico de Monterrey. Focused on psychological first aid, active listening, and supporting first-year students academically and personally. Provided one-on-one mentoring, structured follow-ups, and referrals to campus resources.
+* Tags: #peermentoring #emotionalintelligence #leadership #studentlife #tec21 #softskills
+2. FRC – Blue Ignition Programmer & Mentor
+* Date: April 2023 | Location: Houston, Texas, USA
+* FIRST Robotics Competition participant — first as a programmer, then as a mentor for "Blue Ignition" team. Contributed to robot control systems and autonomous routines using Java. As mentor, provided technical coaching, project planning, and motivational guidance. The team earned a spot at the FRC World Championship.
+* Tags: #FRC #robotics #mentorship #java #controlsystems #worldchampionship #teamleadership #STEMeducation
+3. Gravity Racer – Regional Competition Winner
+* Date: May 2024 | Location: Mesa de las Tablas, Coahuila
+* Collaborated on design and construction of a gravity-powered race car for a regional downhill competition (part of a machine shop course). Involved precision machining, mechanical assembly, and performance optimization. Won 2nd place, demonstrating speed and structural integrity.
+* Tags: #gravitycar #machining #mechanicalengineering #competition #prototyping #fabrication #teamwork
+SECTION 2: PROFESSIONAL ENGINEERING EXPERIENCE (5 projects)
+1. 3D Scanning Rig Prototype for Quality Control – Magna CIMS
+* Date: May 2025 | Location: Ramos Arizpe, Coahuila
+* Developed a prototype 3D scanning rig to streamline quality assurance on the production floor. Used Kinect sensors to generate point clouds for geometric inspection. Designed the mechanical structure in SolidWorks, fabricated parts with 3D printing, and tested the scanning system.
+* Tags: #3Dscanning #pointclouds #solidworks #qualitycontrol #kinect #3Dprinting #industrialengineering #prototyping
+2. Team Romeo – High-Speed Drone for Wildfire Response (GTI/XPRIZE)
+* Date: June 2024 | Location: Monterrey, Nuevo León
+* Team Lead at Green Tech Innovation (GTI) developing an ultra-fast, high-payload drone for the XPRIZE Wildfire Challenge. Focused on rapid area scanning and targeted wildfire suppression. Led conceptual and mechanical design, CAD development, feasibility reviews, design iteration, and manufacturing simplification.
+* Tags: #wildfiredrone #GTI #XPRIZE #aerialscanning #payloadoptimization #dronedesign #rapidprototyping #leadership
+3. RGB-D and Point Cloud Vision Systems – Research at CINVESTAV
+* Date: February 2025 | Location: Ramos Arizpe, Coahuila
+* Research at CINVESTAV (Centro de Investigación y de Estudios Avanzados) on computer vision using RGB-D data and point cloud processing. Worked on depth-enhanced image data, spatial reconstruction, object detection, scene understanding, and robotic perception. Contributed to algorithm development for spatial mapping and segmentation.
+* Tags: #RGBDvision #pointclouds #computerVision #research #cinvestav #3Dreconstruction #depthsensing #robotics
+4. Automated Gripper Design for KUKA Robotic Arm – GecVac
+* Date: November 2024 | Location: Saltillo, Coahuila
+* Led CAD design of a gripper for KUKA robotic arm integration. Focused on mechanical efficiency, prototyped using additive manufacturing, and worked on early-stage control integration. Contributed to validation and calibration of robotic operations for object handling.
+* Tags: #KUKA #robotics #gripperdesign #mechatronics #KRC5 #KUKASim #robotarm #calibration #industrialautomation
+5. Automated Transport Cart Concept – Polsa
+* Date: August 2024 | Location: Saltillo, Coahuila
+* Designed an automated transport cart to streamline material handling within Polsa's production facility, enhancing operational efficiency.
+* Tags: #transportationdesign #SolidWorks #RaspberryPi #automation #mechanicaldesign #industrialengineering #gears #chains
+SECTION 3: LANGUAGE PROFICIENCY & TEACHING (2 entries)
+1. German Language Proficiency & Teaching Experience
+* Date: August 2024 | Location: Saltillo, Coahuila
+* Achieved B2 proficiency in German (speaking and writing) in just 6 months. Transitioned into a teaching role as a German language instructor, helping others learn the language.
+* Tags: #German #B2Level #languagelearning #teaching #professor #multilingual #fastlearning
+2. French Language Proficiency – Voxea Swiss Academy
+* Date: 2019–2022 | Location: Saltillo, Coahuila
+* Learned French during high school. Completed an immersive winter program at Voxea Swiss Academy in Switzerland (online course) reaching B1 accreditation. Enhanced cultural understanding of French-speaking regions.
+* Tags: #French #languagelearning #B1Level #VoxeaSwissAcademy #immersion #conversationalFrench #multilingual
+Languages Summary: Spanish (native), English (fluent), German (B2), French (B1) — 4 languages total.
+SECTION 4: AUTOMOTIVE ENGINEERING – STEINBEIS TRANSFER CENTER, ESSLINGEN
+STiAE – Automotive Engineering Course
+* Date: January 2024 | Location: Esslingen am Neckar, Germany
+* Completed a specialized course at the Steinbeis Transfer Center covering automotive systems, design principles, and engineering applications. Focused on integration of advanced technologies in vehicle development. Gained insights into cutting-edge engineering solutions and automotive industry challenges.
+* Tags: #automotiveengineering #SteinbeisTransferCenter #Esslingen #vehicledevelopment #advancedengineering
+SECTION 5: UNIVERSITY ENGINEERING PROJECTS (11 projects)
+1. Three-Way Speaker System with Passive Crossover Filter
+* Date: April 2023 | Location: Saltillo
+* Designed and built a three-way speaker using a passive low-pass filter with inductors and capacitors. Separated low, mid, and high frequencies to woofer, midrange, and tweeter. Both circuit simulation and physical construction.
+* Tags: #electronics #audioengineering #passivefilters #circuitdesign #simulation #acoustics
+2. Self-Stabilizing Rolling Sphere
+* Date: November 2024 | Location: Saltillo
+* Spherical robot with internal motion control using MPU6050 gyroscope/accelerometer, DC motors, H-bridge drivers, LiPo battery, and Raspberry Pi Pico. Full CAD model and 3D-printed shell. Programmed in Python. (H-bridge failure prevented full operation, but strong development demonstrated.)
+* Tags: #robotics #embeddedpython #raspberrypipico #3dprinting #cad #mpu6050 #prototyping #motioncontrol
+3. Humanoid Motion Mimicry with Dynamixel Robot
+* Date: March 2025 | Location: Saltillo
+* One-week intensive TEC21 challenge: programmed a humanoid robot with Dynamixel actuators to mimic human movements (jumping, lateral slides). Explored motion capture, inverse kinematics, balance constraints, and timing in bipedal movement.
+* Tags: #robotics #dynamixel #humanoidrobot #motionmimicry #tec21 #embeddedprogramming #bipedalcontrol
+4. Custom-Built BLDC Motor Prototype
+* Date: June 2023 | Location: Saltillo
+* Assembled and partially tested a custom brushless DC motor, including wiring, controller setup, and 3D-printed stator with hand-wound coils. Magnetic field activation verified despite lack of strong neodymium magnets for rotation.
+* Tags: #bldc #electromechanical #3dprinting #coilwinding #motorcontrol #prototyping #magneticfields
+5. Multi-Level Water Leveling System with Energy Recovery
+* Date: November 2022 | Location: Saltillo
+* Designed a water leveling system based on Bernoulli's principle. Wood construction with precision cuts for target pressures. Added a small motor/generator to capture energy from falling water — combining mechanical design with renewable energy concepts.
+* Tags: #fluidmechanics #bernoulli #woodworking #pressurecontrol #renewableenergy #prototyping
+6. Automated Industrial Blind Prototype
+* Date: March 2024 | Location: Saltillo
+* Automated industrial blind using Arduino, ultrasonic sensors, and LCD interface with safety features.
+* Tags: #automation #arduino #ultrasonicsensors #lcdinterface #mechatronics #safetyfeatures #iotprototype
+7. PISA Exam Practice Interface in Python
+* Date: October 2022 | Location: Saltillo
+* Fully interactive graphical interface in Python for practicing PISA exam-style questions. Custom image-based canvas with clickable buttons and responsive behavior.
+* Tags: #python #gui #educationtech #canvas #userinterface #pisa #fullstackpython
+8. PVC Underwater ROV for Task Execution
+* Date: October 2022 | Location: Saltillo
+* Remotely operated underwater vehicle built with PVC tubing for pool-based tasks. Powered by lead-acid battery, controlled via tethered Ethernet cable with three-state toggle switches. Successfully performed underwater maneuvers.
+* Tags: #rov #underwaterrobotics #pvcengineering #manualcontrols #electricalwiring
+9. Conceptual Sea Bin for SDG-Inspired Water Cleanup
+* Date: August 2024 | Location: Saltillo
+* Floating waste collection device inspired by the Sea Bin initiative, aligned with UN SDGs. Used water pump, PVC pipe system, and bucket structure to simulate debris capture. Low-cost, scalable environmental engineering prototype.
+* Tags: #sustainability #seabin #sdg #watercleanup #greenengineering #pvcdesign
+10. Cardboard Chair for Visually Impaired Children
+* Date: November 2023 | Location: Saltillo
+* Lightweight, eco-friendly chair from laser-cut cardboard for visually impaired children. Multiple prototype iterations tested with a universal testing machine for stress distribution. CAD designs, DXF files for laser cutting, ergonomic design focus.
+* Tags: #inclusiveDesign #cardboardengineering #cad #laserCutting #usertesting #mechanicaltesting #designthinking
+11. Laser-Cut Wooden Can Crusher
+* Date: April 2024 | Location: Saltillo
+* Recreated a mechanical can crusher design in SolidWorks, prepared DXF files for laser cutting, manufactured wooden parts, and assembled with interlocking joints and adhesives.
+* Tags: #mechanicaldesign #solidworks #laserfabrication #dxfprocessing #woodworking #prototyping
+KEY SKILLS EXTRACTED ACROSS ALL PROJECTS
+Technical: SolidWorks, CAD/DXF, 3D Printing, Laser Cutting, Python, Java, Arduino, Raspberry Pi Pico, KUKA robotics (KRC5/KUKASim), Dynamixel actuators, Kinect sensors, RGB-D/point cloud processing, circuit design, embedded systems, fluid mechanics, motor design (BLDC), PVC fabrication
+Domains: Robotics, Drones, Automation, Computer Vision, Automotive Engineering, Quality Control, Industrial Design, Underwater Robotics, Sustainable Engineering, Audio Engineering
+Soft Skills: Team leadership, mentoring, peer support, teaching (German), project management, design thinking, rapid prototyping, interdisciplinary teamwork
+Languages: Spanish (native), English, German (B2), French (B1)
+Notable Achievements: FRC World Championship qualifier, XPRIZE Wildfire Challenge participant, 2nd place Gravity Racer regional competition, Steinbeis Transfer Center (Germany) course, CINVESTAV research, Magna CIMS professional experience, certified Peer Mentor
+SITE STRUCTURE & DESIGN NOTES (for rebuilding)
+The current site is built on Wix with a dark green/black theme and a distinctive retro monospace font for the header. It has a flat structure: homepage → 5 collection categories → individual project pages. Each project page uses a consistent template with title, project type tags, date, location, description paragraphs, and a photo gallery. The footer has social links and email. There's also a blog section with 3 generic Spanish-language posts about engineering portfolios. The site is bilingual (Spanish navigation labels, English content).

@@ -1,0 +1,93 @@
+.selected-work {
+  width: 100%;
+  position: relative;
+  margin-top: 30vh;
+}
+
+.sw-header {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.sw-header__title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(6vw, 8vw, 10vw);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.sw-header__char {
+  display: inline;
+  will-change: opacity;
+}
+
+.sw-header__char--accent {
+  color: var(--color-accent);
+}
+
+/* ---------- Project Counter ---------- */
+
+.project-counter {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.project-counter--visible {
+  opacity: 1;
+}
+
+.project-counter__current {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-accent);
+}
+
+.project-counter__separator {
+  opacity: 0.4;
+}
+
+.project-counter__total {
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .sw-header {
+    min-height: 30vh;
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .sw-header__title {
+    font-size: 10vw;
+  }
+
+  .project-counter {
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .project-counter__current {
+    font-size: 0.85rem;
+  }
+}
