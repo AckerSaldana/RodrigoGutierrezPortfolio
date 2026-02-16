@@ -9,6 +9,7 @@ import SelectedWork from './components/SelectedWork/SelectedWork';
 import TheArchive from './components/TheArchive/TheArchive';
 import Timeline from './components/Timeline/Timeline';
 import HumanSection from './components/HumanSection/HumanSection';
+import ContactSection from './components/ContactSection/ContactSection';
 import ScrollProgress from './components/ScrollProgress';
 import './App.css';
 
@@ -58,6 +59,7 @@ function App() {
             <TheArchive />
             <Timeline />
             <HumanSection />
+            <ContactSection />
           </main>
         </>
       )}
