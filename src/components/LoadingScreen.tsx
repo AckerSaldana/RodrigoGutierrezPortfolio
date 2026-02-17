@@ -12,8 +12,12 @@ export default function LoadingScreen({ onContentReady, onComplete }: LoadingScr
   const counterRef = useRef<HTMLSpanElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
+  const hasRun = useRef(false);
 
   useEffect(() => {
+    if (hasRun.current) return;
+    hasRun.current = true;
+
     const container = containerRef.current;
     const counter = counterRef.current;
     const left = leftRef.current;
@@ -28,41 +32,37 @@ export default function LoadingScreen({ onContentReady, onComplete }: LoadingScr
     // Non-linear counter: slow-fast-slow
     tl.to(obj, {
       val: 100,
-      duration: 2.2,
+      duration: 1.4,
       ease: 'power2.inOut',
       onUpdate: () => {
         counter.textContent = String(Math.round(obj.val)).padStart(3, '0');
       },
     });
 
-    // Brief hold at 100
-    tl.to({}, { duration: 0.15 });
-
-    // Fade counter
-    tl.to(counter, {
-      opacity: 0,
-      duration: 0.15,
-      ease: 'power2.in',
-    });
-
-    // Signal content to render — content appears behind the curtains
+    // Signal content to render right when counter hits 100
     tl.call(() => {
       onContentReady();
     });
 
-    // Tiny delay for React to mount content
+    // Wait one frame for React to mount content behind curtains
     tl.to({}, { duration: 0.05 });
 
-    // Curtain split — fast, with out easing (no slow start)
+    // Counter fades while curtains split — all at once
+    tl.to(counter, {
+      opacity: 0,
+      duration: 0.4,
+      ease: 'power2.in',
+    });
+
     tl.to(left, {
       xPercent: -100,
-      duration: 0.7,
+      duration: 0.5,
       ease: 'power2.out',
-    });
+    }, '<');
 
     tl.to(right, {
       xPercent: 100,
-      duration: 0.7,
+      duration: 0.5,
       ease: 'power2.out',
     }, '<');
 
@@ -80,10 +80,6 @@ export default function LoadingScreen({ onContentReady, onComplete }: LoadingScr
     document.fonts.ready.then(() => {
       // Fonts loaded — counter continues as normal
     });
-
-    return () => {
-      tl.kill();
-    };
   }, [onContentReady, onComplete]);
 
   return (
