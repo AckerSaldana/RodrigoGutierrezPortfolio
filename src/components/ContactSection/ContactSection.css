@@ -1,27 +1,58 @@
-/* Contact Section — V2: Full viewport, minimal */
+/* Contact Section — Cinematic Closing Moment */
+
+/* ===== Section & Pin ===== */
 .contact {
   position: relative;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.contact__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-xl) var(--spacing-lg);
-  background: var(--bg-primary);
   gap: var(--spacing-lg);
+  overflow: hidden;
 }
 
+/* ===== Heading ===== */
 .contact__heading {
+  position: relative;
+  z-index: 2;
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: clamp(1.5rem, 3vw, 4rem);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.5em;
   color: var(--text-primary);
   text-align: center;
+  perspective: 1000px;
+  will-change: letter-spacing, transform;
 }
 
-/* Email — copper fill hover */
+/* ===== Character Spans ===== */
+.contact__char {
+  display: inline-block;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* ===== Email Wrapper (clip-path container) ===== */
+.contact__email-wrap {
+  position: relative;
+  z-index: 2;
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+}
+
+/* Email — copper fill hover (unchanged) */
 .contact__email {
   font-family: var(--font-primary);
   font-weight: 700;
@@ -48,8 +79,10 @@
   background-position: 0% 0;
 }
 
-/* Social icons */
+/* ===== Social Icons ===== */
 .contact__socials {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 32px;
@@ -60,13 +93,13 @@
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  opacity: 0.7;
   transition: opacity 0.3s ease, color 0.3s ease;
+  will-change: transform, opacity, filter;
 }
 
 .contact__social-link:hover {
   color: var(--accent-copper);
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .contact__social-link svg {
@@ -74,7 +107,7 @@
   height: 16px;
 }
 
-/* Copyright */
+/* ===== Copyright ===== */
 .contact__copyright {
   position: absolute;
   bottom: var(--spacing-md);
@@ -86,15 +119,40 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-primary);
-  opacity: 0.3;
+  opacity: 0;
   white-space: nowrap;
+  z-index: 2;
+  will-change: opacity;
 }
 
-/* Mobile */
+/* ================================================
+   MOBILE (≤768px)
+   ================================================ */
 @media (max-width: 768px) {
   .contact {
+    height: auto;
     min-height: 80vh;
-    padding: var(--spacing-lg) var(--spacing-sm);
+    overflow: visible;
+  }
+
+  .contact__pin {
+    position: relative;
+    height: auto;
+    min-height: 80vh;
+    padding: var(--spacing-xl) var(--spacing-sm);
+  }
+
+  .contact__heading {
+    letter-spacing: 0.02em;
+    perspective: none;
+  }
+
+  .contact__char {
+    transform-style: flat;
+  }
+
+  .contact__email-wrap {
+    clip-path: none;
   }
 
   .contact__email {

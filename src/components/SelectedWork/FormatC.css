@@ -21,6 +21,7 @@
   padding: 0 4vw;
   position: relative;
   z-index: 2;
+  background: linear-gradient(to right, var(--bg-primary) 70%, transparent 100%);
 }
 
 .format-c__title {
