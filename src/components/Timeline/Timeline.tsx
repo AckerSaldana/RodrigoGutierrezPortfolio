@@ -90,7 +90,6 @@ export default function Timeline() {
 
         // Build crossfade segments between consecutive entries
         for (let i = 0; i < positions.length - 1; i++) {
-          const fromPos = positions[i] * 100;
           const toPos = positions[i + 1] * 100;
 
           // Move marker to next position

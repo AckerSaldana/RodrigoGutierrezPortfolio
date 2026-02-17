@@ -17,90 +17,88 @@ export default function HeroSection() {
 
     if (!section || !name || !subtitle) return;
 
-    // Get all individual letters
     const letters = name.querySelectorAll('.hero-letter');
+    const scrollTriggers: ScrollTrigger[] = [];
+    let entranceTl: gsap.core.Timeline | null = null;
 
-    // ===== ENTRANCE ANIMATION =====
-    const entranceTl = gsap.timeline();
+    // Start hidden — curtain is covering this
+    gsap.set(letters, { y: '110%', rotateX: -90, opacity: 0 });
+    gsap.set(subtitle, { opacity: 0, y: 20 });
 
-    // Set initial state for letters
-    gsap.set(letters, {
-      opacity: 0,
-      y: 60,
-      rotateX: -90,
-    });
+    const playEntrance = () => {
+      entranceTl = gsap.timeline({
+        onComplete: () => {
+          // Scroll parallax — only after entrance finishes
+          gsap.set(letters, { clearProps: 'y,rotateX' });
+          gsap.set(subtitle, { clearProps: 'y' });
 
-    // Set initial state for subtitle
-    gsap.set(subtitle, {
-      opacity: 0,
-      y: 20,
-    });
+          letters.forEach((letter, index) => {
+            const speed = 0.3 + (index % 5) * 0.15;
+            const direction = index % 2 === 0 ? 1 : -1;
 
-    // Staggered letter reveal with 3D rotation
-    entranceTl.to(letters, {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      stagger: {
-        amount: 0.8,
-        from: 'start',
-      },
-    });
+            const st = ScrollTrigger.create({
+              trigger: section,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 1,
+              animation: gsap.to(letter, {
+                y: `${direction * 60 * speed}px`,
+                opacity: 0.3 + (1 - speed) * 0.7,
+              }),
+            });
+            scrollTriggers.push(st);
+          });
 
-    // Subtitle fades in after name
-    entranceTl.to(
-      subtitle,
-      {
-        opacity: 0.6,
+          const stSub = ScrollTrigger.create({
+            trigger: section,
+            start: 'top top',
+            end: '30% top',
+            scrub: 1,
+            animation: gsap.to(subtitle, { y: -30, opacity: 0 }),
+          });
+          scrollTriggers.push(stSub);
+        },
+      });
+
+      // Letters rotate up into place with stagger
+      entranceTl.to(letters, {
+        y: '0%',
+        rotateX: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: 'power3.out',
+        stagger: 0.03,
+      });
+
+      // Subtitle fades in
+      entranceTl.to(subtitle, {
+        opacity: 0.5,
         y: 0,
         duration: 0.6,
         ease: 'power2.out',
-      },
-      '-=0.3'
-    );
+      }, '-=0.4');
+    };
 
-    // ===== SCROLL PARALLAX ANIMATION =====
-    // Only set up after entrance animation completes
-    entranceTl.call(() => {
-      letters.forEach((letter, index) => {
-        // Vary the speed based on position - creates wave-like dissolve
-        const speed = 0.3 + (index % 5) * 0.15;
-        const direction = index % 2 === 0 ? 1 : -1;
+    // Wait for curtain to finish opening before animating
+    window.addEventListener('curtainOpen', playEntrance, { once: true });
 
-        gsap.to(letter, {
-          y: `${direction * 50 * speed}px`,
-          opacity: 0.3 + (1 - speed) * 0.7,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        });
-      });
-
-      // Subtitle parallax - fades and moves up
-      gsap.to(subtitle, {
-        y: -30,
-        opacity: 0,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: '50% top',
-          scrub: 1,
-        },
-      });
+    // Background transition — safe to create immediately
+    const stBg = ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+      animation: gsap.to(section, { backgroundColor: '#111111' }),
     });
+    scrollTriggers.push(stBg);
 
     return () => {
-      entranceTl.kill();
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      window.removeEventListener('curtainOpen', playEntrance);
+      entranceTl?.kill();
+      scrollTriggers.forEach((st) => st.kill());
     };
   }, []);
 
-  // Split text into individual letter spans
   const renderLetters = (text: string) => {
     return text.split('').map((char, index) => (
       <span key={index} className="hero-letter">
@@ -114,10 +112,13 @@ export default function HeroSection() {
       <div className="hero-content">
         <h1 ref={nameRef} className="hero-name">
           <span className="hero-name-line">{renderLetters('RODRIGO')}</span>
-          <span className="hero-name-line">{renderLetters('GUTIÉRREZ')}</span>
+          <span className="hero-name-line">
+            {renderLetters('GUTIÉRREZ')}
+            <span className="hero-letter hero-copper-dot">.</span>
+          </span>
         </h1>
         <p ref={subtitleRef} className="hero-subtitle">
-          MECHATRONICS ENGINEER · SALTILLO · MX
+          MECHATRONICS ENGINEER &middot; SALTILLO, MX &middot; MMXXVI
         </p>
       </div>
     </section>

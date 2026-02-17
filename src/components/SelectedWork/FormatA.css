@@ -1,0 +1,103 @@
+/* Format A — "Full Bleed" */
+.format-a {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.format-a__visual {
+  position: absolute;
+  inset: 0;
+  will-change: transform, clip-path;
+  clip-path: inset(15%);
+}
+
+.format-a__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.format-a__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(10, 10, 10, 0.85) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.format-a__content {
+  position: absolute;
+  bottom: 8%;
+  left: 8%;
+  z-index: 2;
+  max-width: 55%;
+}
+
+.format-a__title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 5vw);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.format-a__char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.format-a__desc {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  line-height: 1.7;
+  color: var(--text-primary);
+  opacity: 0.85;
+  max-width: 500px;
+}
+
+.format-a__meta {
+  position: absolute;
+  right: 2vw;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  writing-mode: vertical-rl;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.format-a__tag {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  opacity: 0.5;
+}
+
+.format-a__date {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .format-a__content {
+    bottom: 6%;
+    left: var(--spacing-sm);
+    max-width: 85%;
+  }
+
+  .format-a__meta {
+    display: none;
+  }
+}

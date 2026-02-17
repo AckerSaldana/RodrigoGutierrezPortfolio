@@ -1,248 +1,202 @@
-/* ── The Human Section — "The Off-Center Portrait" ── */
+/* Human Section — "The Split" */
 
+/* ===== Section & Pin ===== */
 .human {
   position: relative;
   width: 100%;
-}
-
-.human__viewport {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+  height: 300vh;
   overflow: hidden;
-  background: var(--color-bg);
 }
 
-/* ── Layer stack ── */
+.human__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
 
-.human__layer {
+/* ===== Copper Rule ===== */
+.human__copper-rule {
   position: absolute;
-  inset: 0;
-  pointer-events: none;
+  left: 50%;
+  top: 15%;
+  bottom: 15%;
+  width: 1px;
+  background-color: var(--accent-copper);
+  transform: translateX(-50%);
+  transform-origin: center center;
+  z-index: 3;
+  will-change: transform, opacity;
+}
+
+/* ===== Figure ===== */
+.human__figure-wrap {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 45vw;
+  z-index: 4;
   will-change: transform;
 }
 
-/* Z-0: Ghost name — upper-left, diagonal tension with "06" */
-
-.human__ghost-name {
-  z-index: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 8vh 0 0 5vw;
-}
-
-.human__ghost-name span {
-  font-family: var(--font-primary);
-  font-weight: 700;
-  font-size: 18vw;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(232, 228, 223, 0.04);
-  user-select: none;
-  white-space: nowrap;
-}
-
-/* Z-1: Figure cutout — right-aligned */
-
 .human__figure {
-  z-index: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding-right: 8vw;
-  will-change: clip-path, transform;
-}
-
-.human__figure img {
-  height: 82vh;
-  width: auto;
-  max-width: 50vw;
-  object-fit: contain;
-  filter: grayscale(20%);
+  width: 100%;
+  height: auto;
   display: block;
+  filter: contrast(1.08) brightness(1.02);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
+  will-change: transform, opacity;
 }
 
-/* Z-2: Ghost number — bottom-right, overlapping figure subtly */
-
-.human__ghost-number {
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 0 4vw 6vh 0;
-}
-
-.human__ghost-number span {
-  font-family: var(--font-primary);
-  font-weight: 700;
-  font-size: 20vw;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(232, 228, 223, 0.035);
-  user-select: none;
-}
-
-/* Z-3: Text column — single wide column, left-aligned */
-
-.human__text-layer {
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 5vw;
-  pointer-events: auto;
-}
-
-.human__text-column {
-  width: 42%;
-  max-width: 520px;
+/* ===== Content ===== */
+.human__content {
+  position: absolute;
+  left: 55%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38vw;
+  z-index: 5;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
-.human__accent-line {
-  width: 50px;
-  height: 1px;
-  background: var(--color-accent);
-  transform-origin: left;
-}
-
+/* ===== Label ===== */
 .human__label {
   font-family: var(--font-primary);
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--color-text);
-  opacity: 0.6;
+  letter-spacing: 0.35em;
+  color: var(--accent-copper);
+  margin-bottom: 0.5rem;
+  will-change: letter-spacing, opacity;
 }
 
-.human__label-char {
-  display: inline-block;
-  will-change: opacity, transform;
-}
-
+/* ===== Bio ===== */
 .human__bio {
   font-family: var(--font-primary);
   font-weight: 400;
   font-size: clamp(0.85rem, 1vw, 1.0625rem);
   line-height: 1.8;
-  color: var(--color-text);
+  color: var(--text-primary);
   opacity: 0.85;
 }
 
+.human__bio-line {
+  display: block;
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+}
+
+/* ===== Interests ===== */
+.human__interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.human__interest-tag {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  will-change: letter-spacing, opacity, transform;
+}
+
+/* ===== Signature ===== */
 .human__signature {
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--color-accent);
-  opacity: 0.7;
-  margin-top: 0.5rem;
+  color: var(--accent-copper);
+  margin-top: 1rem;
 }
 
-/* Z-4: Copper line — horizontal counter-rhythm at 30% */
-
-.human__copper-line {
-  z-index: 4;
-  top: 30%;
-  left: 5vw;
+/* ===== Ghost Section Number ===== */
+.human__section-number {
+  position: absolute;
   right: 5vw;
-  bottom: auto;
-  height: 1px;
-  background: var(--color-accent);
-  opacity: 0.4;
-  transform-origin: left;
+  bottom: 8vh;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(15vw, 20vw, 25vw);
+  line-height: 0.8;
+  color: var(--text-primary);
+  opacity: 0.03;
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+  will-change: transform;
 }
 
-/* ── Mobile ≤768px ── */
-
+/* ================================================
+   MOBILE (≤768px)
+   ================================================ */
 @media (max-width: 768px) {
-  .human__viewport {
+  .human {
     height: auto;
     min-height: 100vh;
+    overflow: visible;
+  }
+
+  .human__pin {
+    position: relative;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--spacing-lg) 0 var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-sm);
+    gap: var(--spacing-lg);
   }
 
-  /* All layers become static flow */
-  .human__layer {
+  /* Hide copper rule & ghost on mobile */
+  .human__copper-rule,
+  .human__section-number {
+    display: none;
+  }
+
+  .human__figure-wrap {
     position: relative;
-    inset: auto;
-  }
-
-  /* Ghost name: behind figure via absolute */
-  .human__ghost-name {
-    position: absolute;
-    top: 8vh;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 0;
-    padding: 0;
-  }
-
-  .human__ghost-name span {
-    font-size: 30vw;
-    letter-spacing: 0.02em;
-  }
-
-  /* Figure */
-  .human__figure {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    justify-content: center;
-    padding-right: 0;
-  }
-
-  .human__figure img {
-    height: 55vh;
-    max-width: 70vw;
-  }
-
-  /* Ghost number */
-  .human__ghost-number {
-    position: absolute;
-    top: 4vh;
-    right: 4vw;
-    z-index: 2;
-    padding: 0;
-  }
-
-  .human__ghost-number span {
-    font-size: 35vw;
-    -webkit-text-stroke: 1px rgba(232, 228, 223, 0.025);
-  }
-
-  /* Text: single column below figure */
-  .human__text-layer {
-    position: relative;
-    z-index: 3;
-    flex-direction: column;
-    padding: var(--spacing-md) var(--spacing-sm) 0;
-    gap: var(--spacing-md);
-  }
-
-  .human__text-column {
-    width: 100%;
-    max-width: none;
-  }
-
-  /* Copper line */
-  .human__copper-line {
-    position: relative;
-    z-index: 4;
-    top: auto;
     left: auto;
-    right: auto;
+    top: auto;
+    transform: none;
+    width: 60vw;
+    max-width: 280px;
+  }
+
+  .human__figure {
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  }
+
+  .human__content {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
     width: 100%;
-    margin-top: var(--spacing-sm);
+    max-width: 500px;
+  }
+
+  .human__label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+  }
+
+  .human__interests {
+    gap: 0.75rem;
+  }
+
+  .human__interest-tag {
+    letter-spacing: 0.2em;
   }
 }

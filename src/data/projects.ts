@@ -7,6 +7,8 @@ export interface ProjectData {
   description: string;
   tags: string[];
   image: string;
+  format: 'A' | 'B' | 'C';
+  images?: string[];
 }
 
 export const projects: ProjectData[] = [
@@ -20,6 +22,7 @@ export const projects: ProjectData[] = [
       'Led development of an ultra-fast, high-payload drone for the XPRIZE Wildfire Challenge, focusing on rapid area scanning and targeted wildfire suppression.',
     tags: ['DRONES', 'XPRIZE', 'CAD', 'LEADERSHIP'],
     image: 'https://picsum.photos/seed/wildfire-drone/1600/900',
+    format: 'A',
   },
   {
     id: 'kuka-gripper-design',
@@ -31,6 +34,7 @@ export const projects: ProjectData[] = [
       'Led CAD design of a gripper for KUKA robotic arm integration, focusing on mechanical efficiency and additive manufacturing prototyping.',
     tags: ['ROBOTICS', 'KUKA', 'CAD', 'MANUFACTURING'],
     image: 'https://picsum.photos/seed/kuka-gripper/1600/900',
+    format: 'B',
   },
   {
     id: 'rgbd-research-cinvestav',
@@ -42,6 +46,13 @@ export const projects: ProjectData[] = [
       'Research on computer vision using RGB-D data and point cloud processing for spatial reconstruction, object detection, and robotic perception.',
     tags: ['VISION', 'POINT CLOUDS', 'RESEARCH', 'ROBOTICS'],
     image: 'https://picsum.photos/seed/rgbd-1/1600/900',
+    format: 'C',
+    images: [
+      'https://picsum.photos/seed/rgbd-1/1600/900',
+      'https://picsum.photos/seed/rgbd-2/1600/900',
+      'https://picsum.photos/seed/rgbd-3/1600/900',
+      'https://picsum.photos/seed/rgbd-4/1600/900',
+    ],
   },
   {
     id: '3d-scanning-rig-magna',
@@ -53,6 +64,7 @@ export const projects: ProjectData[] = [
       'Developed a prototype 3D scanning rig using Kinect sensors to streamline quality assurance on the production floor.',
     tags: ['3D SCANNING', 'SOLIDWORKS', 'QC', 'KINECT'],
     image: 'https://picsum.photos/seed/3d-scanning/1600/900',
+    format: 'A',
   },
   {
     id: 'humanoid-motion-mimicry',
@@ -64,6 +76,7 @@ export const projects: ProjectData[] = [
       'Programmed a humanoid robot with Dynamixel actuators to mimic human movements, exploring motion capture and inverse kinematics.',
     tags: ['ROBOTICS', 'DYNAMIXEL', 'KINEMATICS', 'BIPEDAL'],
     image: 'https://picsum.photos/seed/humanoid-robot/1600/900',
+    format: 'B',
   },
   {
     id: 'self-stabilizing-sphere',
@@ -75,6 +88,12 @@ export const projects: ProjectData[] = [
       'Spherical robot with internal motion control using gyroscope, accelerometer, DC motors, and Raspberry Pi Pico.',
     tags: ['ROBOTICS', 'EMBEDDED', '3D PRINTING', 'PYTHON'],
     image: 'https://picsum.photos/seed/sphere-1/1600/900',
+    format: 'C',
+    images: [
+      'https://picsum.photos/seed/sphere-1/1600/900',
+      'https://picsum.photos/seed/sphere-2/1600/900',
+      'https://picsum.photos/seed/sphere-3/1600/900',
+    ],
   },
   {
     id: 'gravity-racer',
@@ -86,5 +105,6 @@ export const projects: ProjectData[] = [
       'Designed and built a gravity-powered race car for a regional downhill competition, winning 2nd place through precision machining and performance optimization.',
     tags: ['MACHINING', 'COMPETITION', 'FABRICATION', 'DESIGN'],
     image: 'https://picsum.photos/seed/gravity-racer/1600/900',
+    format: 'A',
   },
 ];

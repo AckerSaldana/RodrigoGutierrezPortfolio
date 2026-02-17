@@ -3,99 +3,94 @@ import gsap from 'gsap';
 import './LoadingScreen.css';
 
 interface LoadingScreenProps {
+  onContentReady: () => void;
   onComplete: () => void;
 }
 
-export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
+export default function LoadingScreen({ onContentReady, onComplete }: LoadingScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const rPathRef = useRef<SVGPathElement>(null);
-  const gPathRef = useRef<SVGPathElement>(null);
+  const counterRef = useRef<HTMLSpanElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const rPath = rPathRef.current;
-    const gPath = gPathRef.current;
     const container = containerRef.current;
+    const counter = counterRef.current;
+    const left = leftRef.current;
+    const right = rightRef.current;
 
-    if (!rPath || !gPath || !container) return;
+    if (!container || !counter || !left || !right) return;
 
-    // Get the length of each path for stroke animation
-    const rLength = rPath.getTotalLength();
-    const gLength = gPath.getTotalLength();
+    const obj = { val: 0 };
 
-    // Set initial state - paths invisible
-    gsap.set(rPath, {
-      strokeDasharray: rLength,
-      strokeDashoffset: rLength,
-    });
-    gsap.set(gPath, {
-      strokeDasharray: gLength,
-      strokeDashoffset: gLength,
-    });
+    const tl = gsap.timeline();
 
-    // Create animation timeline
-    const tl = gsap.timeline({
-      onComplete: () => {
-        // Fade out and call onComplete
-        gsap.to(container, {
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.inOut',
-          onComplete: onComplete,
-        });
-      },
-    });
-
-    // Draw R
-    tl.to(rPath, {
-      strokeDashoffset: 0,
-      duration: 1,
+    // Non-linear counter: slow-fast-slow
+    tl.to(obj, {
+      val: 100,
+      duration: 2.2,
       ease: 'power2.inOut',
+      onUpdate: () => {
+        counter.textContent = String(Math.round(obj.val)).padStart(3, '0');
+      },
     });
 
-    // Draw G (starts at 0.5s overlap)
-    tl.to(
-      gPath,
-      {
-        strokeDashoffset: 0,
-        duration: 1,
-        ease: 'power2.inOut',
-      },
-      '-=0.5'
-    );
+    // Brief hold at 100
+    tl.to({}, { duration: 0.15 });
 
-    // Brief hold
-    tl.to({}, { duration: 0.3 });
+    // Fade counter
+    tl.to(counter, {
+      opacity: 0,
+      duration: 0.15,
+      ease: 'power2.in',
+    });
+
+    // Signal content to render — content appears behind the curtains
+    tl.call(() => {
+      onContentReady();
+    });
+
+    // Tiny delay for React to mount content
+    tl.to({}, { duration: 0.05 });
+
+    // Curtain split — fast, with out easing (no slow start)
+    tl.to(left, {
+      xPercent: -100,
+      duration: 0.7,
+      ease: 'power2.out',
+    });
+
+    tl.to(right, {
+      xPercent: 100,
+      duration: 0.7,
+      ease: 'power2.out',
+    }, '<');
+
+    // Curtains are fully open — signal hero to start its entrance
+    tl.call(() => {
+      window.dispatchEvent(new Event('curtainOpen'));
+    });
+
+    // Remove loading screen from DOM
+    tl.call(() => {
+      onComplete();
+    });
+
+    // Preload fonts
+    document.fonts.ready.then(() => {
+      // Fonts loaded — counter continues as normal
+    });
 
     return () => {
       tl.kill();
     };
-  }, [onComplete]);
+  }, [onContentReady, onComplete]);
 
   return (
     <div ref={containerRef} className="loading-screen">
-      <svg
-        className="loading-svg"
-        viewBox="0 0 220 100"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Smooth R - continuous flowing curve */}
-        <path
-          ref={rPathRef}
-          className="loading-path"
-          d="M15 90 L15 10 Q15 5 20 5 L45 5 Q65 5 65 25 Q65 45 45 45 L30 45 Q25 45 30 50 L60 90"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        {/* Smooth G - continuous flowing curve */}
-        <path
-          ref={gPathRef}
-          className="loading-path"
-          d="M155 30 Q155 5 130 5 Q100 5 100 30 L100 70 Q100 95 130 95 Q160 95 160 70 L160 50 L130 50"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <div ref={leftRef} className="loading-screen__curtain loading-screen__curtain--left" />
+      <div ref={rightRef} className="loading-screen__curtain loading-screen__curtain--right" />
+      <span ref={counterRef} className="loading-screen__counter">000</span>
     </div>
   );
 }

@@ -1,14 +1,20 @@
+/* Hero — V2: bottom-third, parallax dissolution */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 150vh;
   position: relative;
-  padding: var(--spacing-lg);
+  overflow: hidden;
+  background: var(--bg-primary);
 }
 
 .hero-content {
-  text-align: center;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 8%;
+  padding-bottom: 15vh;
   perspective: 1000px;
 }
 
@@ -19,7 +25,7 @@
   line-height: 0.95;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: var(--color-text);
+  color: var(--text-primary);
   margin-bottom: var(--spacing-md);
   overflow: visible;
 }
@@ -27,6 +33,7 @@
 .hero-name-line {
   display: block;
   perspective: 1000px;
+  overflow: hidden;
 }
 
 .hero-letter {
@@ -36,18 +43,32 @@
   backface-visibility: hidden;
 }
 
+.hero-copper-dot {
+  color: var(--accent-copper);
+}
+
 .hero-subtitle {
   font-family: var(--font-primary);
   font-weight: 400;
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-text);
+  color: var(--text-primary);
+  opacity: 0.5;
   will-change: transform, opacity;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .hero {
+    height: 120vh;
+  }
+
+  .hero-content {
+    padding: 0 var(--spacing-sm);
+    padding-bottom: 12vh;
+  }
+
   .hero-name {
     font-size: 12vw;
   }

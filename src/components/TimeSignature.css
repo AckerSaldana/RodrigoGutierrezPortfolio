@@ -1,0 +1,22 @@
+/* Time signature — fixed top-left */
+.time-signature {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 9990;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  opacity: 0.3;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .time-signature {
+    display: none;
+  }
+}

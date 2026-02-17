@@ -1,57 +1,38 @@
-/* ── Contact Section — "The Closing" ── */
-
+/* Contact Section — V2: Full viewport, minimal */
 .contact {
   position: relative;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--spacing-xl) var(--spacing-lg);
-  background: var(--color-bg);
+  background: var(--bg-primary);
+  gap: var(--spacing-lg);
 }
 
-.contact__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-md);
+.contact__heading {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
   text-align: center;
 }
 
-/* ── Copper accent line ── */
-
-.contact__line {
-  width: 80px;
-  height: 1px;
-  background: var(--color-accent);
-  transform-origin: center;
-}
-
-/* ── Label ── */
-
-.contact__label {
-  font-family: var(--font-primary);
-  font-weight: 700;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--color-text);
-  opacity: 0.5;
-}
-
-/* ── Email link — copper fill hover ── */
-
+/* Email — copper fill hover */
 .contact__email {
   font-family: var(--font-primary);
   font-weight: 700;
-  font-size: clamp(1.5rem, 4vw, 4rem);
+  font-size: clamp(1.2rem, 2.5vw, 3rem);
   text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 1.1;
   background: linear-gradient(
     90deg,
-    var(--color-accent) 50%,
-    var(--color-text) 50%
+    var(--accent-copper) 50%,
+    var(--text-primary) 50%
   );
   background-size: 200% 100%;
   background-position: 100% 0;
@@ -67,35 +48,33 @@
   background-position: 0% 0;
 }
 
-/* ── Social icons row ── */
-
+/* Social icons */
 .contact__socials {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 32px;
 }
 
 .contact__social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text);
-  opacity: 0.5;
+  color: var(--text-secondary);
+  opacity: 0.7;
   transition: opacity 0.3s ease, color 0.3s ease;
 }
 
 .contact__social-link:hover {
-  color: var(--color-accent);
+  color: var(--accent-copper);
   opacity: 1;
 }
 
 .contact__social-link svg {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
 }
 
-/* ── Copyright ── */
-
+/* Copyright */
 .contact__copyright {
   position: absolute;
   bottom: var(--spacing-md);
@@ -103,16 +82,15 @@
   transform: translateX(-50%);
   font-family: var(--font-primary);
   font-weight: 400;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-text);
-  opacity: 0.4;
+  color: var(--text-primary);
+  opacity: 0.3;
   white-space: nowrap;
 }
 
-/* ── Mobile ≤768px ── */
-
+/* Mobile */
 @media (max-width: 768px) {
   .contact {
     min-height: 80vh;
@@ -120,8 +98,12 @@
   }
 
   .contact__email {
-    font-size: clamp(1.2rem, 5.5vw, 2rem);
+    font-size: clamp(1rem, 5vw, 1.75rem);
     word-break: break-all;
+  }
+
+  .contact__socials {
+    gap: 24px;
   }
 
   .contact__social-link svg {

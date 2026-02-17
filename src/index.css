@@ -1,13 +1,35 @@
-/* Rodrigo Gutiérrez Portfolio - Global Styles */
+/* Rodrigo Gutiérrez Portfolio V2 — Global Styles */
 
 :root {
   /* Color Palette */
-  --color-bg: #0A0A0A;
-  --color-text: #E8E4DF;
-  --color-accent: #C47A3A;
+  --bg-primary: #0A0A0A;
+  --bg-elevated: #111111;
+  --bg-hover: #1A1A1A;
+  --text-primary: #E8E4DF;
+  --text-secondary: #8A8580;
+  --text-tertiary: #5A5550;
+  --accent-copper: #C47A3A;
+  --accent-copper-dim: #C47A3A66;
+  --rule-color: #2A2520;
+
+  /* Legacy aliases (backward compat during migration) */
+  --color-bg: var(--bg-primary);
+  --color-text: var(--text-primary);
+  --color-accent: var(--accent-copper);
 
   /* Typography */
   --font-primary: "new-astro", sans-serif;
+
+  /* Typography Scale */
+  --text-xs: 0.65rem;
+  --text-sm: 0.75rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 3rem;
+  --text-4xl: 4rem;
+  --text-hero: clamp(8vw, 15vw, 18vw);
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -33,8 +55,8 @@ body {
   font-family: var(--font-primary);
   font-weight: 400;
   line-height: 1.7;
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -65,6 +87,41 @@ img {
 
 /* Selection styling */
 ::selection {
-  background-color: var(--color-accent);
-  color: var(--color-bg);
+  background-color: var(--accent-copper);
+  color: var(--bg-primary);
+}
+
+/* Desktop: hide system cursor (custom cursor takes over) */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button {
+    cursor: none;
+  }
+}
+
+/* Accent line pulse — subtle breathing on copper/rule elements */
+@keyframes accent-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.human__signature,
+.timeline-traveler,
+.timeline-detail__connector,
+.archive-item__copper-rule {
+  animation: accent-pulse 4s ease-in-out infinite;
+}
+
+/* Reduced motion: disable all animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

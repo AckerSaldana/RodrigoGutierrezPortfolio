@@ -20,7 +20,6 @@ export default function ArchiveItem({ project }: ArchiveItemProps) {
     if (!detail || !inner) return;
 
     if (!expanded) {
-      // Expand
       setExpanded(true);
       const height = inner.offsetHeight;
       gsap.set(detail, { height: 0 });
@@ -39,7 +38,6 @@ export default function ArchiveItem({ project }: ArchiveItemProps) {
         { opacity: 1, y: 0, duration: 0.4, delay: 0.15, ease: 'power2.out' },
       );
     } else {
-      // Collapse
       const height = detail.offsetHeight;
       gsap.set(detail, { height });
       gsap.to(detail, {
@@ -59,7 +57,7 @@ export default function ArchiveItem({ project }: ArchiveItemProps) {
     if (!ghost) return;
     tweenRef.current?.kill();
     tweenRef.current = gsap.to(ghost, {
-      opacity: 0.1,
+      opacity: 0.06,
       duration: 0.5,
       ease: 'power2.out',
     });
@@ -96,19 +94,27 @@ export default function ArchiveItem({ project }: ArchiveItemProps) {
         aria-expanded={expanded}
       >
         <span className="archive-item__title">{project.title}</span>
+        <span className="archive-item__dots" />
         <span className="archive-item__year">{project.year}</span>
       </button>
 
       <div ref={detailRef} className="archive-item__detail">
         <div ref={innerRef} className="archive-item__detail-inner">
-          <p className="archive-item__description">{project.description}</p>
-          <div className="archive-item__tags">
-            {project.tags.map((tag) => (
-              <span key={tag} className="archive-item__tag">
-                {tag}
-              </span>
-            ))}
+          <div className="archive-item__detail-text">
+            <p className="archive-item__description">{project.description}</p>
+            <div className="archive-item__tags">
+              {project.tags.map((tag) => (
+                <span key={tag} className="archive-item__tag">{tag}</span>
+              ))}
+            </div>
+            <div className="archive-item__copper-rule" />
           </div>
+          <img
+            className="archive-item__detail-image"
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

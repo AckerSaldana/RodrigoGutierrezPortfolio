@@ -1,0 +1,164 @@
+/* Format C — "Horizontal Filmstrip" */
+.format-c {
+  position: relative;
+  width: 100%;
+}
+
+.format-c__viewport {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Fixed left panel */
+.format-c__info {
+  width: 30vw;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4vw;
+  position: relative;
+  z-index: 2;
+}
+
+.format-c__title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.5vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.format-c__desc {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: clamp(0.8rem, 0.9vw, 1rem);
+  line-height: 1.7;
+  color: var(--text-primary);
+  opacity: 0.85;
+  margin-bottom: 2rem;
+}
+
+.format-c__scroll-hint {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.format-c__meta {
+  margin-top: 2rem;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Scrolling right panel — filmstrip track */
+.format-c__strip {
+  display: flex;
+  gap: 2vw;
+  height: 100%;
+  padding: 8vh 4vw 8vh 0;
+  align-items: center;
+  will-change: transform;
+}
+
+.format-c__frame {
+  position: relative;
+  flex-shrink: 0;
+  width: 40vw;
+  height: 70vh;
+  border: 1px solid var(--rule-color);
+}
+
+.format-c__frame-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.format-c__frame-index {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  opacity: 0.4;
+}
+
+.format-c__frame-caption {
+  position: absolute;
+  bottom: -24px;
+  left: 0;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Separator rules between frames */
+.format-c__separator {
+  flex-shrink: 0;
+  width: 1px;
+  height: 60vh;
+  background: var(--rule-color);
+  opacity: 0.15;
+  align-self: center;
+}
+
+/* Mobile: vertical stack instead of horizontal scroll */
+@media (max-width: 768px) {
+  .format-c__viewport {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .format-c__info {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .format-c__scroll-hint {
+    display: none;
+  }
+
+  .format-c__strip {
+    flex-direction: column;
+    padding: var(--spacing-sm);
+    gap: var(--spacing-md);
+  }
+
+  .format-c__frame {
+    height: auto;
+    width: 100%;
+  }
+
+  .format-c__frame-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .format-c__separator {
+    display: none;
+  }
+}

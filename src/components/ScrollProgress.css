@@ -3,15 +3,32 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 1px;
-  background-color: rgba(232, 228, 223, 0.1);
   z-index: 9998;
 }
 
 .scroll-progress-bar {
   width: 100%;
-  height: 100%;
-  background-color: var(--color-accent);
+  height: 1px;
+  background-color: var(--accent-copper);
   transform-origin: left center;
   transform: scaleX(0);
+}
+
+.scroll-progress-label {
+  position: absolute;
+  top: 6px;
+  right: 24px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .scroll-progress-label {
+    display: none;
+  }
 }

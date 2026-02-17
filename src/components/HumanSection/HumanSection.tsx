@@ -5,295 +5,335 @@ import './HumanSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const bioLines = [
+  'I grew up taking things apart before I knew how to put them back together.',
+  'That curiosity led me from Saltillo to Monterrey, then to Esslingen, Germany —',
+  'where I picked up a third language, a love for precision manufacturing,',
+  'and a habit of eating Brötchen for breakfast. Later, I found myself in Ontario,',
+  'then Houston, each stop reshaping how I think about making things.',
+  '',
+  'When I\'m not buried in CAD or debugging ROS nodes, I mentor FIRST robotics teams,',
+  'teach conversational German to engineering students, and look for the next thing',
+  'I don\'t yet understand. I speak Spanish, English, German, and enough French',
+  'to order coffee without embarrassing myself.',
+];
+
+const interests = ['ROBOTICS', 'LANGUAGE', 'TEACHING', 'TRAVEL', 'MAKING THINGS MOVE'];
+
 export default function HumanSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const ghostNameRef = useRef<HTMLDivElement>(null);
-  const figureRef = useRef<HTMLDivElement>(null);
-  const ghostNumRef = useRef<HTMLDivElement>(null);
-  const textLayerRef = useRef<HTMLDivElement>(null);
-  const copperRef = useRef<HTMLDivElement>(null);
-  const accentRef = useRef<HTMLDivElement>(null);
-  const labelCharsRef = useRef<(HTMLSpanElement | null)[]>([]);
-  const bio1Ref = useRef<HTMLParagraphElement>(null);
-  const bio2Ref = useRef<HTMLParagraphElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const ruleRef = useRef<HTMLDivElement>(null);
+  const figureWrapRef = useRef<HTMLDivElement>(null);
+  const figureRef = useRef<HTMLImageElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
+  const bioLinesRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const tagsRef = useRef<(HTMLSpanElement | null)[]>([]);
   const signatureRef = useRef<HTMLSpanElement>(null);
+  const ghostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const viewport = viewportRef.current;
-    const ghostName = ghostNameRef.current;
+    const rule = ruleRef.current;
+    const figureWrap = figureWrapRef.current;
     const figure = figureRef.current;
-    const ghostNum = ghostNumRef.current;
-    const textLayer = textLayerRef.current;
-    const copper = copperRef.current;
-    const accent = accentRef.current;
-    const labelChars = labelCharsRef.current.filter(Boolean) as HTMLSpanElement[];
-    const bio1 = bio1Ref.current;
-    const bio2 = bio2Ref.current;
+    const content = contentRef.current;
+    const label = labelRef.current;
+    const lines = bioLinesRef.current.filter(Boolean) as HTMLSpanElement[];
+    const tags = tagsRef.current.filter(Boolean) as HTMLSpanElement[];
     const signature = signatureRef.current;
+    const ghost = ghostRef.current;
 
-    if (
-      !section || !viewport || !ghostName || !figure ||
-      !ghostNum || !textLayer || !copper || !accent ||
-      !bio1 || !bio2 || !signature
-    ) return;
+    if (!section || !rule || !figureWrap || !figure || !content) return;
 
     const ctx = gsap.context(() => {
-      // ── Desktop: pinned scrubbed timeline ──
-      gsap.matchMedia().add('(min-width: 769px)', () => {
-        // Initial states
-        gsap.set(ghostName, { opacity: 0 });
-        gsap.set(figure, {
-          clipPath: 'circle(0% at 50% 60%)',
-          scale: 1.15,
-        });
-        gsap.set(ghostNum, { opacity: 0 });
-        gsap.set(copper, { scaleX: 0 });
-        gsap.set(accent, { scaleX: 0 });
-        gsap.set(labelChars, { opacity: 0, y: 8 });
-        gsap.set(bio1, { opacity: 0, y: 25 });
-        gsap.set(bio2, { opacity: 0, y: 25 });
-        gsap.set(signature, { opacity: 0, y: 10 });
+      gsap.matchMedia().add(
+        {
+          desktop: '(min-width: 769px)',
+          mobile: '(max-width: 768px)',
+        },
+        (context) => {
+          const { desktop } = context.conditions!;
 
-        // ── Master timeline ──
-        const tl = gsap.timeline();
+          if (desktop) {
+            // ==========================================
+            // DESKTOP — Pinned split animation
+            // ==========================================
+            const masterTl = gsap.timeline();
 
-        // Phase 1 — Emergence (0–0.30)
-        // Ghost name fades in
-        tl.to(ghostName, {
-          opacity: 1,
-          duration: 0.2,
-          ease: 'none',
-        }, 0);
+            // --- Initial states ---
+            gsap.set(rule, { opacity: 0, scaleY: 0 });
+            gsap.set(figure, { opacity: 0, scale: 1.12 });
+            gsap.set(content, { opacity: 0 });
+            if (label) gsap.set(label, { opacity: 0, letterSpacing: '0.6em' });
+            gsap.set(lines, { clipPath: 'inset(0 100% 0 0)' });
+            gsap.set(tags, { opacity: 0, y: 8, letterSpacing: '0.4em' });
+            if (signature) gsap.set(signature, { opacity: 0 });
+            if (ghost) gsap.set(ghost, { opacity: 0.03 });
 
-        // Figure iris-open + counter-zoom
-        tl.to(figure, {
-          clipPath: 'circle(55% at 50% 60%)',
-          scale: 1.0,
-          duration: 0.3,
-          ease: 'power2.out',
-        }, 0);
+            // =============================================
+            // Phase 0: Entry (0–10%) — Copper rule appears
+            // =============================================
+            masterTl.to(rule, {
+              opacity: 0.6,
+              scaleY: 1,
+              duration: 0.1,
+              ease: 'power2.out',
+            }, 0);
 
-        // Phase 2 — Anchoring (0.30–0.50)
-        // Copper line sweeps left→right
-        tl.to(copper, {
-          scaleX: 1,
-          duration: 0.2,
-          ease: 'power2.inOut',
-        }, 0.30);
+            // =============================================
+            // Phase 1: Arrival (10–30%) — Figure fades in centered
+            // =============================================
+            masterTl.to(figure, {
+              opacity: 1,
+              scale: 1.0,
+              duration: 0.2,
+              ease: 'power2.out',
+            }, 0.1);
 
-        // Ghost "06" fades in
-        tl.to(ghostNum, {
-          opacity: 1,
-          duration: 0.2,
-          ease: 'none',
-        }, 0.35);
+            // =============================================
+            // Phase 2: The Split (30–50%) — Figure slides left, content appears
+            // =============================================
+            masterTl.to(figureWrap, {
+              xPercent: -100,
+              duration: 0.2,
+              ease: 'power3.inOut',
+            }, 0.3);
 
-        // Phase 3 — The Words (0.48–0.84)
-        // Accent line
-        tl.to(accent, {
-          scaleX: 1,
-          duration: 0.08,
-          ease: 'power2.out',
-        }, 0.48);
+            masterTl.to(content, {
+              opacity: 1,
+              duration: 0.15,
+              ease: 'power2.out',
+            }, 0.35);
 
-        // Label chars stagger
-        tl.to(labelChars, {
-          opacity: 1,
-          y: 0,
-          stagger: 0.015,
-          duration: 0.14,
-          ease: 'power2.out',
-        }, 0.50);
+            if (label) {
+              masterTl.to(label, {
+                opacity: 1,
+                letterSpacing: '0.35em',
+                duration: 0.15,
+                ease: 'power2.out',
+              }, 0.35);
+            }
 
-        // Bio paragraph 1 fades + slides up
-        tl.to(bio1, {
-          opacity: 0.85,
-          y: 0,
-          duration: 0.14,
-          ease: 'power2.out',
-        }, 0.56);
+            // =============================================
+            // Phase 3: Bio (50–80%) — Line-by-line clip-path wipe
+            // =============================================
+            if (lines.length > 0) {
+              masterTl.to(lines, {
+                clipPath: 'inset(0 0% 0 0)',
+                stagger: 0.08,
+                duration: 0.3,
+                ease: 'none',
+              }, 0.5);
+            }
 
-        // Bio paragraph 2 fades + slides up
-        tl.to(bio2, {
-          opacity: 0.85,
-          y: 0,
-          duration: 0.14,
-          ease: 'power2.out',
-        }, 0.64);
+            // =============================================
+            // Phase 4: Seal (80–100%) — Tags tighten, signature, figure settles
+            // =============================================
+            if (tags.length > 0) {
+              masterTl.to(tags, {
+                opacity: 1,
+                y: 0,
+                duration: 0.08,
+                stagger: 0.02,
+                ease: 'power2.out',
+              }, 0.8);
 
-        // Signature name
-        tl.to(signature, {
-          opacity: 0.7,
-          y: 0,
-          duration: 0.12,
-          ease: 'power2.out',
-        }, 0.72);
+              masterTl.to(tags, {
+                letterSpacing: '0.12em',
+                duration: 0.12,
+                stagger: 0.02,
+                ease: 'power2.inOut',
+              }, 0.85);
+            }
 
-        // Phase 4 — Settling (0.84–1.0): parallax drifts settle
+            if (signature) {
+              masterTl.to(signature, {
+                opacity: 0.7,
+                duration: 0.1,
+                ease: 'power2.out',
+              }, 0.88);
+            }
 
-        // ── Continuous parallax (layered into same ScrollTrigger) ──
-        // Increased slightly to compensate for shorter scroll distance
-        tl.to(ghostName, { y: -60, duration: 1, ease: 'none' }, 0);
-        tl.to(ghostNum, { y: -42, duration: 1, ease: 'none' }, 0);
-        tl.to(copper, { y: -25, duration: 1, ease: 'none' }, 0);
-        tl.to(figure, { y: -18, duration: 1, ease: 'none' }, 0);
-        tl.to(textLayer, { y: -8, duration: 1, ease: 'none' }, 0);
+            // Figure subtle settle
+            masterTl.to(figure, {
+              y: -5,
+              scale: 0.98,
+              duration: 0.15,
+              ease: 'power2.out',
+            }, 0.85);
 
-        // ── Pin & scrub — let ScrollTrigger handle pin spacing ──
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top top',
-          end: '+=200%',
-          pin: viewport,
-          pinSpacing: true,
-          scrub: 1,
-          animation: tl,
-        });
-      });
+            // Master ScrollTrigger — pin the section
+            ScrollTrigger.create({
+              trigger: section,
+              start: 'top top',
+              end: '+=200%',
+              pin: true,
+              scrub: 1,
+              animation: masterTl,
+            });
 
-      // ── Mobile: no pin, simple scroll reveals ──
-      gsap.matchMedia().add('(max-width: 768px)', () => {
-        gsap.set(ghostName, { opacity: 0 });
-        gsap.set(figure, {
-          clipPath: 'circle(0% at 50% 60%)',
-          scale: 1.1,
-        });
-        gsap.set(ghostNum, { opacity: 0 });
-        gsap.set(copper, { scaleX: 0 });
-        gsap.set(accent, { scaleX: 0 });
-        gsap.set(labelChars, { opacity: 0, y: 8 });
-        gsap.set(bio1, { opacity: 0, y: 15 });
-        gsap.set(bio2, { opacity: 0, y: 15 });
-        gsap.set(signature, { opacity: 0 });
+            // Independent parallax — ghost "06"
+            if (ghost) {
+              gsap.to(ghost, {
+                yPercent: -50,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: section,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: 1,
+                },
+              });
+            }
 
-        // Ghost name
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top 80%',
-          end: 'top 40%',
-          scrub: 1,
-          animation: gsap.to(ghostName, { opacity: 1, ease: 'none' }),
-        });
+            // Independent parallax — figure vertical drift
+            gsap.to(figureWrap, {
+              y: -40,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1,
+              },
+            });
+          } else {
+            // ==========================================
+            // MOBILE — Simple scroll-triggered fades
+            // ==========================================
 
-        // Figure iris-open
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top 75%',
-          end: 'top 25%',
-          scrub: 1,
-          animation: gsap.to(figure, {
-            clipPath: 'circle(55% at 50% 60%)',
-            scale: 1.0,
-            ease: 'power2.out',
-          }),
-        });
+            // Figure
+            gsap.set(figure, { opacity: 0, y: 30 });
+            ScrollTrigger.create({
+              trigger: figure,
+              start: 'top 85%',
+              end: 'top 50%',
+              scrub: 1,
+              animation: gsap.to(figure, { opacity: 1, y: 0, ease: 'power2.out' }),
+            });
 
-        // Ghost number
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top 50%',
-          end: 'top 20%',
-          scrub: 1,
-          animation: gsap.to(ghostNum, { opacity: 1, ease: 'none' }),
-        });
+            // Label
+            if (label) {
+              gsap.set(label, { opacity: 0, y: 15 });
+              ScrollTrigger.create({
+                trigger: label,
+                start: 'top 85%',
+                end: 'top 60%',
+                scrub: 1,
+                animation: gsap.to(label, { opacity: 1, y: 0, ease: 'power2.out' }),
+              });
+            }
 
-        // Copper line
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top 45%',
-          end: 'top 15%',
-          scrub: 1,
-          animation: gsap.to(copper, { scaleX: 1, ease: 'power2.inOut' }),
-        });
+            // Bio lines — clip-path wipe
+            if (lines.length > 0) {
+              gsap.set(lines, { clipPath: 'inset(0 100% 0 0)' });
+              ScrollTrigger.create({
+                trigger: content,
+                start: 'top 75%',
+                end: 'center 50%',
+                scrub: 1,
+                animation: gsap.to(lines, {
+                  clipPath: 'inset(0 0% 0 0)',
+                  stagger: 0.1,
+                  ease: 'none',
+                }),
+              });
+            }
 
-        // Text reveals
-        ScrollTrigger.create({
-          trigger: textLayer,
-          start: 'top 85%',
-          end: 'top 40%',
-          scrub: 1,
-          animation: gsap.timeline()
-            .to(accent, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
-            .to(labelChars, { opacity: 1, y: 0, stagger: 0.03, duration: 0.4, ease: 'power2.out' }, 0.1)
-            .to(bio1, { opacity: 0.85, y: 0, duration: 0.4, ease: 'power2.out' }, 0.2)
-            .to(bio2, { opacity: 0.85, y: 0, duration: 0.4, ease: 'power2.out' }, 0.35)
-            .to(signature, { opacity: 0.7, duration: 0.3, ease: 'none' }, 0.4),
-        });
-      });
-    });
+            // Tags
+            if (tags.length > 0) {
+              gsap.set(tags, { opacity: 0 });
+              ScrollTrigger.create({
+                trigger: tags[0]?.parentElement || content,
+                start: 'top 80%',
+                end: 'top 50%',
+                scrub: 1,
+                animation: gsap.to(tags, {
+                  opacity: 1,
+                  stagger: 0.08,
+                  ease: 'power2.out',
+                }),
+              });
+            }
+
+            // Signature
+            if (signature) {
+              gsap.set(signature, { opacity: 0 });
+              ScrollTrigger.create({
+                trigger: signature,
+                start: 'top 90%',
+                end: 'top 70%',
+                scrub: 1,
+                animation: gsap.to(signature, { opacity: 0.7, ease: 'power2.out' }),
+              });
+            }
+          }
+        },
+      );
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Render label chars for stagger animation
-  const labelText = 'THE HUMAN BEHIND THE WORK';
-  let charIdx = 0;
-  const renderLabelChars = () =>
-    labelText.split('').map((char, i) => {
-      if (char === ' ') return <span key={i}>&nbsp;</span>;
-      const idx = charIdx++;
-      return (
-        <span
-          key={i}
-          ref={(el) => { labelCharsRef.current[idx] = el; }}
-          className="human__label-char"
-        >
-          {char}
-        </span>
-      );
-    });
-
   return (
-    <section ref={sectionRef} className="human">
-      <div ref={viewportRef} className="human__viewport">
-        {/* Z-0: Ghost name */}
-        <div ref={ghostNameRef} className="human__layer human__ghost-name">
-          <span>RODRIGO</span>
-        </div>
+    <section ref={sectionRef} className="human" data-section="06">
+      <div ref={pinRef} className="human__pin">
+        {/* Copper vertical rule */}
+        <div ref={ruleRef} className="human__copper-rule" />
 
-        {/* Z-1: Figure cutout */}
-        <div ref={figureRef} className="human__layer human__figure">
+        {/* Cutout figure */}
+        <div ref={figureWrapRef} className="human__figure-wrap">
           <img
+            ref={figureRef}
+            className="human__figure"
             src="/rodrigo-cutout.png"
             alt="Rodrigo Gutiérrez"
             loading="lazy"
           />
         </div>
 
-        {/* Z-2: Ghost number */}
-        <div ref={ghostNumRef} className="human__layer human__ghost-number">
-          <span>06</span>
-        </div>
+        {/* Text content */}
+        <div ref={contentRef} className="human__content">
+          <div ref={labelRef} className="human__label">THE HUMAN</div>
 
-        {/* Z-3: Text column — single editorial block */}
-        <div ref={textLayerRef} className="human__layer human__text-layer">
-          <div className="human__text-column">
-            <div ref={accentRef} className="human__accent-line" />
-            <span className="human__label">{renderLabelChars()}</span>
-            <p ref={bio1Ref} className="human__bio">
-              I grew up taking things apart before I knew how to put them back
-              together. That curiosity led me from Saltillo to Monterrey, then to
-              Esslingen, Germany — where I picked up a third language, a love for
-              precision manufacturing, and a habit of eating Brötchen for
-              breakfast.
-            </p>
-            <p ref={bio2Ref} className="human__bio">
-              When I'm not buried in CAD or debugging ROS nodes, I mentor FRC
-              robotics teams, teach conversational German to engineering students,
-              and look for the next thing I don't yet understand. I speak Spanish,
-              English, German, and enough French to order coffee without
-              embarrassing myself.
-            </p>
-            <span ref={signatureRef} className="human__signature">
-              — Rodrigo Gutiérrez Peña
-            </span>
+          <div className="human__bio">
+            {bioLines.map((line, i) => {
+              if (line === '') return <br key={i} />;
+              return (
+                <span
+                  key={i}
+                  ref={(el) => { bioLinesRef.current[i] = el; }}
+                  className="human__bio-line"
+                >
+                  {line}{' '}
+                </span>
+              );
+            })}
           </div>
+
+          <div className="human__interests">
+            {interests.map((tag, i) => (
+              <span
+                key={tag}
+                ref={(el) => { tagsRef.current[i] = el; }}
+                className="human__interest-tag"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <span ref={signatureRef} className="human__signature">
+            — Rodrigo Gutiérrez Peña
+          </span>
         </div>
 
-        {/* Z-4: Copper line */}
-        <div ref={copperRef} className="human__layer human__copper-line" />
+        {/* Ghost section number */}
+        <div ref={ghostRef} className="human__section-number" aria-hidden="true">
+          06
+        </div>
       </div>
     </section>
   );
