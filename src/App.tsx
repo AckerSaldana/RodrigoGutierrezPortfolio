@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -16,6 +16,8 @@ import TheArchive from './components/TheArchive/TheArchive';
 import Timeline from './components/Timeline/Timeline';
 import HumanSection from './components/HumanSection/HumanSection';
 import ContactSection from './components/ContactSection/ContactSection';
+import ProjectModal from './components/ProjectModal/ProjectModal';
+import { projects, type ProjectData } from './data/projects';
 import useMouseParallax from './hooks/useMouseParallax';
 import './App.css';
 
@@ -24,6 +26,8 @@ gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [contentReady, setContentReady] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+  const [clickOrigin, setClickOrigin] = useState({ x: 0, y: 0 });
   const lenisRef = useRef<Lenis | null>(null);
 
   // Ambient mouse parallax on desktop
@@ -67,6 +71,19 @@ function App() {
     setIsLoading(false);
   };
 
+  const handleProjectClick = useCallback((project: ProjectData, e: React.MouseEvent) => {
+    setClickOrigin({ x: e.clientX, y: e.clientY });
+    setSelectedProject(project);
+  }, []);
+
+  const handleProjectClose = useCallback(() => {
+    setSelectedProject(null);
+  }, []);
+
+  const handleProjectNavigate = useCallback((project: ProjectData) => {
+    setSelectedProject(project);
+  }, []);
+
   return (
     <>
       {/* Always-visible global layers */}
@@ -88,13 +105,23 @@ function App() {
           <main className="main-content">
             <HeroSection />
             <IntroStrip />
-            <SelectedWork />
+            <SelectedWork onProjectClick={handleProjectClick} />
             <TheArchive />
             <Timeline />
             <HumanSection />
             <ContactSection />
           </main>
         </>
+      )}
+
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          allProjects={projects}
+          clickOrigin={clickOrigin}
+          onClose={handleProjectClose}
+          onNavigate={handleProjectNavigate}
+        />
       )}
     </>
   );

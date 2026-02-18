@@ -8,9 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   project: ProjectData;
+  onProjectClick?: (project: ProjectData, e: React.MouseEvent) => void;
 }
 
-export default function FormatB({ project }: Props) {
+export default function FormatB({ project, onProjectClick }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const imageWrapRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -142,7 +143,7 @@ export default function FormatB({ project }: Props) {
   };
 
   return (
-    <section ref={sectionRef} className="format-b" data-cursor="project">
+    <section ref={sectionRef} className="format-b" data-cursor="project" onClick={(e) => onProjectClick?.(project, e)}>
       <div ref={textRef} className="format-b__text">
         <div ref={numberRef} className="format-b__number">{padded}</div>
         <h3 className="format-b__title">{renderTitleChars(project.title)}</h3>

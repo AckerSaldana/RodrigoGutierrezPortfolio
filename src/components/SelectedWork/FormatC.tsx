@@ -8,9 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   project: ProjectData;
+  onProjectClick?: (project: ProjectData, e: React.MouseEvent) => void;
 }
 
-export default function FormatC({ project }: Props) {
+export default function FormatC({ project, onProjectClick }: Props) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const stripRef = useRef<HTMLDivElement>(null);
@@ -78,7 +79,7 @@ export default function FormatC({ project }: Props) {
   }, []);
 
   return (
-    <div ref={sectionRef} className="format-c" data-cursor="drag">
+    <div ref={sectionRef} className="format-c" data-cursor="drag" onClick={(e) => onProjectClick?.(project, e)}>
       <div ref={viewportRef} className="format-c__viewport">
         <div className="format-c__info">
           <h3 className="format-c__title">{project.title}</h3>

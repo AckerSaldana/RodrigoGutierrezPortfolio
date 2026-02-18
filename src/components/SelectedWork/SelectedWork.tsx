@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { projects } from '../../data/projects';
+import { projects, type ProjectData } from '../../data/projects';
 import FormatA from './FormatA';
 import FormatB from './FormatB';
 import FormatC from './FormatC';
@@ -11,7 +11,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const FormatMap = { A: FormatA, B: FormatB, C: FormatC } as const;
 
-export default function SelectedWork() {
+interface Props {
+  onProjectClick?: (project: ProjectData, e: React.MouseEvent) => void;
+}
+
+export default function SelectedWork({ onProjectClick }: Props) {
   const headerRef = useRef<HTMLDivElement>(null);
   const charsRef = useRef<(HTMLSpanElement | null)[]>([]);
   const charIndexRef = useRef(0);
@@ -89,7 +93,7 @@ export default function SelectedWork() {
         const FormatComponent = FormatMap[project.format];
         return (
           <div key={project.id}>
-            <FormatComponent project={project} />
+            <FormatComponent project={project} onProjectClick={onProjectClick} />
             {i < projects.length - 1 && (
               <div className="sw-breathing">
                 <span className="sw-breathing__ghost">
