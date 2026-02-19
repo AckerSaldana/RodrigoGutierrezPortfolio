@@ -18,8 +18,8 @@ const quoteText =
 const accentWords = new Set(['engineer', 'drones', 'forests', 'grippers', 'machines']);
 
 const locations = [
-  'TEUTLÁN → ESSLINGEN → SALTILLO',
-  'TEC DE MONTERREY · STEINBEIS · CINVESTAV',
+  'SALTILLO → ESSLINGEN → HOUSTON → RAMOS ARIZPE',
+  'TEC DE MONTERREY · STEINBEIS · MAGNA · CINVESTAV',
 ];
 
 function splitWords(text: string) {

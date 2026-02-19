@@ -15,19 +15,19 @@ export const timelineEntries: TimelineEntry[] = [
     year: '2019–2023',
     role: 'B.S. MECHATRONICS ENGINEERING',
     description:
-      'Studied the intersection of mechanical, electrical, and software systems at one of Latin America\'s top engineering programs.',
+      'B.S. in Mechatronics Engineering at one of Latin America\'s top programs. Competed in FIRST Robotics as programmer and later returned as mentor, led peer tutoring sessions, and graduated with hands-on experience across robotics, embedded systems, and manufacturing.',
     position: 0.10,
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80',
+    image: 'https://static.wixstatic.com/media/ef03dd_a36d5e8276f84073b5f120486a3f5695~mv2.jpg',
   },
   {
     id: 'steinbeis',
     label: 'STEINBEIS / ESSLINGEN',
-    year: '2022',
-    role: 'INTERNATIONAL EXCHANGE — GERMANY',
+    year: '2022 / 2024',
+    role: 'EXCHANGE + AUTOMOTIVE ENGINEERING COURSE',
     description:
-      'Semester abroad focused on advanced manufacturing and Industry 4.0 practices in Stuttgart\'s engineering corridor.',
+      'Semester exchange at Hochschule Esslingen in 2022, immersed in German engineering culture and precision manufacturing. Returned in January 2024 for the Steinbeis Transfer Center\'s Automotive Engineering (STiAE) intensive, deepening knowledge of powertrain systems and vehicle development processes.',
     position: 0.30,
-    image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&q=80',
+    image: 'https://static.wixstatic.com/media/ef03dd_83779ce77ccc41a7a928f50ba79bbd1f~mv2.jpg',
   },
   {
     id: 'frc',
@@ -35,9 +35,9 @@ export const timelineEntries: TimelineEntry[] = [
     year: '2023',
     role: 'FIRST ROBOTICS COMPETITION',
     description:
-      'Competed at the world championship, designing and programming autonomous robot systems under strict build constraints.',
+      'Programmer and mentor for Team Blue Ignition. Wrote Java-based autonomous routines and teleop controls that helped the team qualify for the FIRST World Championship in Houston — then returned as a mentor to pass the knowledge forward.',
     position: 0.45,
-    image: 'https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?w=1200&q=80',
+    image: 'https://static.wixstatic.com/media/ef03dd_464ea1489baa483fb8e8cc464a1b9a17f000.jpg',
   },
   {
     id: 'magna',
@@ -45,9 +45,9 @@ export const timelineEntries: TimelineEntry[] = [
     year: '2023–2024',
     role: 'MANUFACTURING ENGINEERING',
     description:
-      'Developed tooling and process automation for a Tier-1 automotive supplier, bridging CAD design with production-floor reality.',
+      'Designed a 3D scanning rig using a Microsoft Kinect and custom SolidWorks fixtures to bring dimensional quality control directly to the production floor at this Tier-1 automotive supplier — no CMM downtime required.',
     position: 0.65,
-    image: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1200&q=80',
+    image: 'https://static.wixstatic.com/media/ef03dd_8896320d3685451a9c1fd07f947c1a0f~mv2.jpeg',
   },
   {
     id: 'cinvestav',
@@ -55,8 +55,8 @@ export const timelineEntries: TimelineEntry[] = [
     year: '2024–PRESENT',
     role: 'COMPUTER VISION RESEARCH',
     description:
-      'Researching real-time perception systems for robotics applications at Mexico\'s leading advanced research center.',
+      'Ongoing research at CINVESTAV Ramos Arizpe on RGB-D data processing for robotic perception. Work covers point cloud acquisition, semantic segmentation, and spatial mapping — building the sensory layer for autonomous manipulation systems.',
     position: 0.85,
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80',
+    image: 'https://static.wixstatic.com/media/ef03dd_f270020e932f451bba66441b75c4657b~mv2.png',
   },
 ];

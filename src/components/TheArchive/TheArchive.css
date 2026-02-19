@@ -76,7 +76,10 @@
   font-size: clamp(1.25rem, 2.5vw, 2.5rem);
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
   transition: color 0.3s ease;
 }
 

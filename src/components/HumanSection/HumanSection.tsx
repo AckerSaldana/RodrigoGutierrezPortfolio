@@ -6,16 +6,15 @@ import './HumanSection.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const bioLines = [
-  'I grew up taking things apart before I knew how to put them back together.',
-  'That curiosity led me from Saltillo to Monterrey, then to Esslingen, Germany —',
-  'where I picked up a third language, a love for precision manufacturing,',
-  'and a habit of eating Brötchen for breakfast. Later, I found myself in Ontario,',
-  'then Houston, each stop reshaping how I think about making things.',
+  'Crecí desarmando cosas antes de saber cómo volver a armarlas.',
+  'Esa curiosidad me llevó de Saltillo a Monterrey, luego a Esslingen, Alemania,',
+  'donde aprendí alemán en 6 meses hasta nivel B2, desarrollé amor por la manufactura de precisión,',
+  'y adquirí hábitos de ingeniería industrial que siguen conmigo. Luego Ontario y Houston,',
+  'cada parada reformando cómo pienso en construir cosas.',
   '',
-  'When I\'m not buried in CAD or debugging ROS nodes, I mentor FIRST robotics teams,',
-  'teach conversational German to engineering students, and look for the next thing',
-  'I don\'t yet understand. I speak Spanish, English, German, and enough French',
-  'to order coffee without embarrassing myself.',
+  'Cuando no estoy en CAD o depurando sistemas de visión robótica, soy mentor en equipos FRC,',
+  'enseño alemán conversacional a estudiantes de ingeniería, e investigo visión por computadora',
+  'en CINVESTAV con datos RGB-D y nubes de puntos. Hablo español, inglés, alemán (B2) y francés (B1).',
 ];
 
 const interests = ['ROBOTICS', 'LANGUAGE', 'TEACHING', 'TRAVEL', 'MAKING THINGS MOVE'];
