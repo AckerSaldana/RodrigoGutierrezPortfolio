@@ -114,6 +114,14 @@ img {
   animation: accent-pulse 4s ease-in-out infinite;
 }
 
+/* Mobile: reduce large spacing tokens so padding doesn't consume too much viewport */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 5rem;  /* down from 8rem */
+    --spacing-lg: 2.5rem; /* down from 4rem */
+  }
+}
+
 /* Reduced motion: disable all animations */
 @media (prefers-reduced-motion: reduce) {
   *,

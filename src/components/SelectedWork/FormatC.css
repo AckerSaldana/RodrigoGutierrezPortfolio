@@ -150,6 +150,7 @@
   }
 
   .format-c__frame {
+    aspect-ratio: 16 / 10;
     height: auto;
     width: 100%;
   }
@@ -159,7 +160,25 @@
     height: auto;
   }
 
+  .format-c__frame-caption {
+    bottom: 8px;
+    padding: 0 8px;
+    background: rgba(10, 10, 10, 0.6);
+  }
+
+  .format-c__info {
+    background: none;
+  }
+
   .format-c__separator {
     display: none;
+  }
+}
+
+/* Tiny devices (budget Android, ≤374px) */
+@media (max-width: 374px) {
+  .format-c__meta {
+    font-size: 0.5rem;
+    gap: 0.5rem;
   }
 }

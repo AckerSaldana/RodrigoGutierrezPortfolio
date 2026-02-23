@@ -191,6 +191,21 @@
 }
 
 /* =============================================
+   Responsive — Tablet (769px–1024px)
+   ============================================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .intro-data-panel {
+    right: 4%;
+    width: 42%;
+    max-width: none;
+  }
+
+  .intro-quote-block {
+    width: 80vw;
+  }
+}
+
+/* =============================================
    Responsive — Mobile (< 768px)
    ============================================= */
 @media (max-width: 768px) {
@@ -211,13 +226,50 @@
     position: absolute;
     top: auto;
     bottom: 8%;
-    right: 50%;
-    transform: translateX(50%);
-    width: 85vw;
+    left: 7.5vw;
+    right: 7.5vw;
+    width: auto;
     max-width: none;
+    transform: none;
+    gap: 1rem; /* tighten panel sections */
+  }
+
+  .intro-languages {
+    gap: 0.75rem; /* was 1.8rem */
+  }
+
+  .language-item {
+    gap: 0.2rem;
+  }
+
+  .language-code {
+    font-size: 1.1rem;
+  }
+
+  .language-counter {
+    font-size: 1rem;
+    width: auto;
   }
 
   .language-label {
     padding-left: 0;
+    font-size: 0.75rem;
+  }
+
+  .intro-locations {
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .intro-location-item {
+    font-size: 0.75rem;
+  }
+
+  .intro-location-item:last-child {
+    font-size: 0.7rem;
+  }
+
+  .intro-profile-label {
+    font-size: 0.85rem;
   }
 }

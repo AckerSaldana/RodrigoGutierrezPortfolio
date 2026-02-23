@@ -91,6 +91,10 @@
 }
 
 @media (max-width: 768px) {
+  .format-a__visual {
+    clip-path: none;
+  }
+
   .format-a__content {
     bottom: 6%;
     left: var(--spacing-sm);

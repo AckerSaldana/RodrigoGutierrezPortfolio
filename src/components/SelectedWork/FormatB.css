@@ -109,9 +109,21 @@
   color: var(--text-tertiary);
 }
 
+/* Tablet (769px–1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .format-b__image-wrap {
+    right: 0; /* Remove bleed — parallax movement fits within bounds */
+  }
+
+  .format-b__text {
+    padding: 0 3%; /* Was 5%, too tight at 769px */
+  }
+}
+
 @media (max-width: 768px) {
   .format-b {
     flex-direction: column;
+    min-height: 100vh;
   }
 
   .format-b__text {
@@ -131,8 +143,9 @@
   .format-b__image-wrap {
     width: 100%;
     right: 0;
-    position: relative;
-    height: 60vh;
+    position: absolute;
+    inset: 0;
+    height: 100%;
     clip-path: none;
   }
 }

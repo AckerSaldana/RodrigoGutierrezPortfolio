@@ -70,7 +70,7 @@ export default function IntroStrip() {
 
           // --- Initial states ---
           gsap.set(wordEls, { opacity: 0.08, filter: 'blur(4px)' });
-          gsap.set(dataPanel, { opacity: 0, x: desktop ? '10vw' : 0, y: desktop ? 0 : 60 });
+          gsap.set(dataPanel, { opacity: 0, x: desktop ? '10vw' : 0, y: desktop ? 0 : 60, scale: desktop ? 1 : 0.8 });
           if (profileLabel) gsap.set(profileLabel, { letterSpacing: '0.5em', opacity: 0 });
           gsap.set(fills, { scaleX: 0 });
           gsap.set(counters, { innerText: '0' });
@@ -121,9 +121,13 @@ export default function IntroStrip() {
               ease: 'power2.inOut',
             });
           } else {
+            const vh = window.innerHeight;
+            const scaledQuoteH = quoteBlock.offsetHeight * 0.8;
+            const quoteY = vh * 0.08 - vh / 2 + scaledQuoteH / 2;
+
             act2.to(quoteBlock, {
-              scale: 0.6,
-              y: '-25vh',
+              scale: 0.8,
+              y: quoteY,
               opacity: 0.7,
               duration: 1,
               ease: 'power2.inOut',
@@ -136,6 +140,7 @@ export default function IntroStrip() {
               opacity: 1,
               x: 0,
               y: 0,
+              scale: desktop ? 1 : 0.8,
               duration: 1,
               ease: 'power2.out',
             },
